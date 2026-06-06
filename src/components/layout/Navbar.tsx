@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
 
 interface NavbarProps {
@@ -18,8 +18,8 @@ const NAV_LINKS = [
 
 export default function Navbar({ visible }: NavbarProps) {
   const navRef = useRef<HTMLElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Slide in after loader
   useEffect(() => {
     if (!navRef.current) return;
     if (visible) {
@@ -31,26 +31,19 @@ export default function Navbar({ visible }: NavbarProps) {
     }
   }, [visible]);
 
-  // Scrolled state — add background
   useEffect(() => {
     const el = navRef.current;
     if (!el) return;
-
     const onScroll = () => {
-      if (window.scrollY > 60) {
-        el.classList.add("scrolled");
-      } else {
-        el.classList.remove("scrolled");
-      }
+      el.classList.toggle("scrolled", window.scrollY > 60);
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Smooth scroll to section
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setMenuOpen(false);
     const target = document.querySelector(href);
     if (!target) return;
     gsap.to(window, {
@@ -63,37 +56,74 @@ export default function Navbar({ visible }: NavbarProps) {
   if (!visible) return null;
 
   return (
-    <nav id="navbar" ref={navRef} style={{ opacity: 0 }}>
-      {/* Logo */}
-      <a href="/" className="nav-logo" aria-label="Tolf Home" style={{ color: "#C8102E" }}>
-        TOLF<span style={{ color: "#C8102E" }}>.</span>
-      </a>
+    <>
+      <nav id="navbar" ref={navRef} style={{ opacity: 0 }}>
+        <a href="/" className="nav-logo" aria-label="Tolf Home" style={{ color: "#C8102E" }}>
+          TOLF<span style={{ color: "#C8102E" }}>.</span>
+        </a>
 
-      {/* Nav links */}
-      <ul className="nav-links" role="navigation" aria-label="Main navigation">
-        {NAV_LINKS.map((link) => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              className="nav-link"
-              onClick={(e) => handleNavClick(e, link.href)}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+        <ul className="nav-links" role="navigation" aria-label="Main navigation">
+          {NAV_LINKS.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="nav-link"
+                onClick={(e) => handleNavClick(e, link.href)}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-      {/* CTA */}
-      <a
-        href="https://tolf.com/quote"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="nav-cta"
-        aria-label="Get a freight quote"
+        <a
+          href="https://tolf.com/quote"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav-cta"
+          aria-label="Get a freight quote"
+        >
+          Get a Quote
+        </a>
+
+        <button
+          className={`nav-hamburger${menuOpen ? " is-open" : ""}`}
+          onClick={() => setMenuOpen((o) => !o)}
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={menuOpen}
+        >
+          <span className="nav-hamburger-bar" />
+          <span className="nav-hamburger-bar" />
+          <span className="nav-hamburger-bar" />
+        </button>
+      </nav>
+
+      <div
+        className={`mobile-nav${menuOpen ? " is-open" : ""}`}
+        aria-hidden={!menuOpen}
+        role="dialog"
+        aria-label="Mobile navigation"
       >
-        Get a Quote
-      </a>
-    </nav>
+        {NAV_LINKS.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className="mobile-nav-link"
+            onClick={(e) => handleNavClick(e, link.href)}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="https://tolf.com/quote"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mobile-nav-cta"
+          onClick={() => setMenuOpen(false)}
+        >
+          Get a Quote
+        </a>
+      </div>
+    </>
   );
 }

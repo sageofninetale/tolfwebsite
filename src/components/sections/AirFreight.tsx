@@ -15,6 +15,8 @@ export default function AirFreight() {
     const section = sectionRef.current;
     if (!wrapper || !section) return;
 
+    if (window.innerWidth <= 768) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         wrapper,
@@ -27,6 +29,7 @@ export default function AirFreight() {
             start: "top bottom",
             end: "bottom top",
             scrub: true,
+            invalidateOnRefresh: true,
           },
         }
       );

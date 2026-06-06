@@ -15,8 +15,9 @@ export default function MissionStatement() {
     const text = textRef.current;
     if (!section || !panel || !text) return;
 
-    // Initial state — small centered panel
-    gsap.set(panel, { width: "50vw", height: "55vh" });
+    // Initial state — wider on mobile so it doesn't look like a thin strip
+    const isMobile = window.innerWidth <= 768;
+    gsap.set(panel, { width: isMobile ? "90vw" : "50vw", height: "55vh" });
     gsap.set(text, { opacity: 0 });
 
     const ctx = gsap.context(() => {

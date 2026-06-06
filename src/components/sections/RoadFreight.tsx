@@ -16,6 +16,8 @@ export default function RoadFreight() {
     const section = sectionRef.current;
     if (!wrapper || !section) return;
 
+    if (window.innerWidth <= 768) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         wrapper,
@@ -28,6 +30,7 @@ export default function RoadFreight() {
             start: "top bottom",
             end: "bottom top",
             scrub: true,
+            invalidateOnRefresh: true,
           },
         }
       );

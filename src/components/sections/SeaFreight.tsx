@@ -16,6 +16,8 @@ export default function SeaFreight() {
     const section = sectionRef.current;
     if (!wrapper || !section) return;
 
+    if (window.innerWidth <= 768) return;
+
     const ctx = gsap.context(() => {
       gsap.to(wrapper, {
         yPercent: 12,
@@ -25,6 +27,7 @@ export default function SeaFreight() {
           start: "top bottom",
           end: "bottom top",
           scrub: true,
+          invalidateOnRefresh: true,
         },
       });
     });
