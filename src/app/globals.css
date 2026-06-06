@@ -1246,11 +1246,6 @@ body {
     display: none;
   }
 
-  /* Show images immediately on mobile — skip the clip-path reveal animation */
-  .image-reveal-wrapper {
-    clip-path: none !important;
-  }
-
   /* Warehousing — stack image then text on mobile */
   #warehousing {
     display: flex !important;
