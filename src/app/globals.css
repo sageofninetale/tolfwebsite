@@ -1278,9 +1278,9 @@ body {
     );
   }
 
-  /* Reduce headline so it takes up less height — shows more of the truck */
+  /* Keep headline large enough that each word sits on its own line */
   .hero-headline {
-    font-size: clamp(3rem, 13vw, 5rem);
+    font-size: clamp(4.5rem, 10vw, 13rem);
   }
 
   .warehousing-overlay {
