@@ -1263,9 +1263,10 @@ body {
     overflow: hidden;
   }
 
-  /* Hero — show left side of image where truck is */
+  /* Hero — show left side; full height so truck isn't clipped */
   .hero-bg img {
     object-position: left center;
+    height: 100%;
   }
 
   /* Gradient: dark at top for text readability, clear at bottom so truck shows */

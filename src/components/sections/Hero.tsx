@@ -20,6 +20,7 @@ export default function Hero({ animate }: HeroProps) {
   // Parallax on scroll
   useEffect(() => {
     if (!sectionRef.current || !bgImgRef.current) return;
+    if (window.innerWidth <= 768) return;
 
     const ctx = gsap.context(() => {
       gsap.to(bgImgRef.current!, {
