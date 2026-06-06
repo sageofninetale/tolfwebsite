@@ -96,12 +96,12 @@ export default function RoadFreight() {
               style={{ position: "absolute", inset: 0, width: "100%", height: "112%" }}
             >
               <Image
-                src="/images/tolftruck2.jpeg"
-                alt="Tolf road freight truck on a mountain road, aerial view"
+                src="/images/tolftruck3.jpeg"
+                alt="Aerial view of Tolf freight truck on a major freeway interchange at sunset"
                 fill
                 quality={90}
                 sizes="50vw"
-                style={{ objectFit: "cover", objectPosition: "80% 95%" }}
+                style={{ objectFit: "cover", objectPosition: "center 40%" }}
               />
             </div>
           </ImageReveal>
