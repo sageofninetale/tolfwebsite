@@ -1267,9 +1267,25 @@ body {
     overflow: hidden;
   }
 
-  /* Hero — shift focal point down on mobile so truck is more prominent */
+  /* Hero — shift focal point so truck is more prominent */
   .hero-bg img {
-    object-position: center 55%;
+    object-position: 40% center;
+  }
+
+  /* Stronger cinematic gradient on mobile */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.1) 0%,
+      rgba(10,10,10,0.0) 15%,
+      rgba(10,10,10,0.35) 50%,
+      rgba(10,10,10,0.92) 100%
+    );
+  }
+
+  /* Reduce headline so it takes up less height — shows more of the truck */
+  .hero-headline {
+    font-size: clamp(3rem, 13vw, 5rem);
   }
 
   .warehousing-overlay {
