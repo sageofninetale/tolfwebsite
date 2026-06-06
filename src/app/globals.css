@@ -1263,20 +1263,26 @@ body {
     overflow: hidden;
   }
 
-  /* Hero — show left side; full height so truck isn't clipped */
+  /* Hero — shift image up 10% so truck isn't pinned to the very bottom edge */
+  .hero-bg {
+    transform: translateY(-10%);
+  }
+
   .hero-bg img {
     object-position: left center;
     height: 100%;
   }
 
-  /* Gradient: dark at top for text readability, clear at bottom so truck shows */
+  /* Gradient: dark top for text, near-transparent middle for truck, solid at bottom to cover gap */
   .hero-overlay {
     background: linear-gradient(
       to bottom,
       rgba(10,10,10,0.82) 0%,
-      rgba(10,10,10,0.55) 30%,
-      rgba(10,10,10,0.18) 60%,
-      rgba(10,10,10,0.0) 90%
+      rgba(10,10,10,0.55) 25%,
+      rgba(10,10,10,0.12) 55%,
+      rgba(10,10,10,0.05) 80%,
+      rgba(10,10,10,0.85) 90%,
+      rgba(10,10,10,1.0) 100%
     );
   }
 
