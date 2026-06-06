@@ -1190,8 +1190,7 @@ body {
   }
 
   #hero {
-    align-items: flex-start;
-    padding: 5.5rem 1.25rem 2rem;
+    padding: 0 1.25rem 3rem;
   }
 
   .services-grid {
@@ -1263,26 +1262,19 @@ body {
     overflow: hidden;
   }
 
-  /* Hero — shift image up 10% so truck isn't pinned to the very bottom edge */
-  .hero-bg {
-    transform: translateY(-10%);
-  }
-
+  /* Hero — original focal point */
   .hero-bg img {
-    object-position: left center;
-    height: 100%;
+    object-position: 40% center;
   }
 
-  /* Gradient: dark top for text, near-transparent middle for truck, solid at bottom to cover gap */
+  /* Original cinematic gradient */
   .hero-overlay {
     background: linear-gradient(
       to bottom,
-      rgba(10,10,10,0.82) 0%,
-      rgba(10,10,10,0.55) 25%,
-      rgba(10,10,10,0.12) 55%,
-      rgba(10,10,10,0.05) 80%,
-      rgba(10,10,10,0.85) 90%,
-      rgba(10,10,10,1.0) 100%
+      rgba(10,10,10,0.1) 0%,
+      rgba(10,10,10,0.0) 15%,
+      rgba(10,10,10,0.35) 50%,
+      rgba(10,10,10,0.92) 100%
     );
   }
 
