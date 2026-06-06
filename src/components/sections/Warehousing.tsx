@@ -17,27 +17,25 @@ export default function Warehousing() {
     const section = sectionRef.current;
     if (!bg || !section) return;
 
-    // On mobile skip all animations — CSS handles layout
-    if (window.innerWidth <= 768) {
-      gsap.set(bg, { clearProps: "clipPath" });
-      return;
-    }
+    const isMobile = window.innerWidth <= 768;
 
     gsap.set(bg, { clipPath: "inset(0 100% 0 0)" });
 
     const ctx = gsap.context(() => {
+      // Clip-path reveal — runs on all screen sizes
       gsap.to(bg, {
         clipPath: "inset(0 0% 0 0)",
         duration: 1.6,
         ease: "power3.inOut",
         scrollTrigger: {
           trigger: section,
-          start: "top 70%",
+          start: "top 75%",
           toggleActions: "play none none none",
         },
       });
 
-      if (imgWrapper) {
+      // Parallax — desktop only
+      if (!isMobile && imgWrapper) {
         gsap.to(imgWrapper, {
           yPercent: 12,
           ease: "none",

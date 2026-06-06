@@ -1263,9 +1263,13 @@ body {
     position: relative !important;
     height: 60vw;
     min-height: 220px;
-    clip-path: none !important;
     flex-shrink: 0;
     overflow: hidden;
+  }
+
+  /* Hero — shift focal point down on mobile so truck is more prominent */
+  .hero-bg img {
+    object-position: center 55%;
   }
 
   .warehousing-overlay {
