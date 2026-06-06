@@ -42,6 +42,8 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        {/* Disable browser scroll restoration so reload always starts at top */}
+        <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = "manual"; window.scrollTo(0, 0);` }} />
         {children}
       </body>
     </html>

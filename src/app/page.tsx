@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLenis } from "@/hooks/useLenis";
 
 import Loader from "@/components/sections/Loader";
@@ -17,6 +17,11 @@ import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   const [loaderDone, setLoaderDone] = useState(false);
+
+  // Always start at top on mount/reload
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Initialise Lenis smooth scroll at the root
   useLenis();
