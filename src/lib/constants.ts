@@ -63,7 +63,7 @@ export const SERVICES = [
     id: 'road-freight',
     title: 'Road Freight',
     description: 'Full and partial load road transport across the UK and Europe with real-time tracking.',
-    image: '/images/tolftruck1.jpeg',
+    image: '/images/tolftruck3.jpeg',
     icon: 'truck',
   },
   {
