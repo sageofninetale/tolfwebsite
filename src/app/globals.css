@@ -1153,6 +1153,7 @@ body {
     height: 50vw;
     min-height: 280px;
     position: relative;
+    order: -1; /* Image always stacks above text when grid collapses to 1 column */
   }
 
   .image-reveal-wrapper {
@@ -1243,6 +1244,40 @@ body {
   /* Hide desktop CTA — it lives in the mobile overlay instead */
   .nav-cta {
     display: none;
+  }
+
+  /* Show images immediately on mobile — skip the clip-path reveal animation */
+  .image-reveal-wrapper {
+    clip-path: none !important;
+  }
+
+  /* Warehousing — stack image then text on mobile */
+  #warehousing {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .warehousing-bg {
+    position: relative !important;
+    height: 60vw;
+    min-height: 220px;
+    clip-path: none !important;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .warehousing-overlay {
+    display: none;
+  }
+
+  .warehousing-content {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    padding: 2.5rem 1.25rem 3rem;
+    max-width: 100%;
   }
 
   /* Taller service images so content is visible when stacked */

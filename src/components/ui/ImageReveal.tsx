@@ -27,6 +27,13 @@ export default function ImageReveal({
     const inner = innerRef.current;
     if (!wrapper || !inner) return;
 
+    // On mobile, skip animation — CSS already forces clip-path: none
+    if (window.innerWidth <= 768) {
+      gsap.set(wrapper, { clearProps: "clipPath" });
+      gsap.set(inner, { clearProps: "transform" });
+      return;
+    }
+
     // Set initial state
     gsap.set(wrapper, { clipPath: "inset(0 100% 0 0)" });
     gsap.set(inner, { scale: 1.1 });

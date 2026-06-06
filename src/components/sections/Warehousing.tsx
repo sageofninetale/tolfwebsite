@@ -17,10 +17,15 @@ export default function Warehousing() {
     const section = sectionRef.current;
     if (!bg || !section) return;
 
+    // On mobile skip all animations — CSS handles layout
+    if (window.innerWidth <= 768) {
+      gsap.set(bg, { clearProps: "clipPath" });
+      return;
+    }
+
     gsap.set(bg, { clipPath: "inset(0 100% 0 0)" });
 
     const ctx = gsap.context(() => {
-      // Clip-path wipe
       gsap.to(bg, {
         clipPath: "inset(0 0% 0 0)",
         duration: 1.6,
@@ -32,7 +37,6 @@ export default function Warehousing() {
         },
       });
 
-      // Parallax on image wrapper
       if (imgWrapper) {
         gsap.to(imgWrapper, {
           yPercent: 12,
@@ -42,6 +46,7 @@ export default function Warehousing() {
             start: "top bottom",
             end: "bottom top",
             scrub: true,
+            invalidateOnRefresh: true,
           },
         });
       }

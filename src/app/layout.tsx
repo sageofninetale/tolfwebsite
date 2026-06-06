@@ -41,9 +41,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body suppressHydrationWarning>
-        {/* Disable browser scroll restoration so reload always starts at top */}
-        <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = "manual"; window.scrollTo(0, 0);` }} />
+      <body suppressHydrationWarning style={{ backgroundColor: '#000' }}>
+        {/* Scroll restoration + solid black bg before any CSS loads */}
+        <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = "manual"; window.scrollTo(0, 0); document.documentElement.style.background='#000';` }} />
         {children}
       </body>
     </html>
